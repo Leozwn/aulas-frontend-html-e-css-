@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício Layout Flexbox</title>
+    <style>
+        
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        body,
+        h1,
+        h2,
+        h3,
+        h4,
+        p {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        @keyframes vertical {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes horizontal {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* pesquisei na i.a tbm */
+        @keyframes fade {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+
+        /*  Menu Lateral (Aside) */
+        aside {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            color: white;
+            width: 250px; 
+            padding: 20px;
+            min-height: 100vh;
+
+            background: #000985;
+            background: linear-gradient(180deg, rgba(0, 9, 133, 1) 1%, rgba(12, 0, 235, 1) 16%, rgba(93, 0, 186, 1) 47%, rgba(115, 0, 255, 1) 100%);
+
+            animation: vertical 0.8s ease-out forwards;
+            z-index: 10;
+        }
+
+        aside h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        aside a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px;
+            text-align: center;
+            transition: 0.2s;
+        }
+
+        aside a:hover {
+            background-color: rgba(255, 255, 255, 0.39);
+            border-radius: 8px;
+            box-shadow: 2px 2px 10px black;
+        }
+
+        /*  Estrutura Principal do Layout */
+        .tudo {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .container {
+            flex: 1; /* Ocupa todo o espaço restante ao lado do menu */
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Cabeçalho  */
+        header {
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+
+
+            background: #fd861d;
+            background: linear-gradient(90deg, rgba(253, 134, 29, 1) 27%, rgba(247, 17, 17, 1) 78%);
+
+            animation: horizontal 0.8s ease-out 0.3s backwards;
+        }
+
+        .admin {
+            background-color: white;
+            color: black;
+            padding: 5px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        main {
+            padding: 20px;
+            animation: fade 1s ease-in 1s backwards;
+        }
+
+        
+        .cards {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background-color: rgba(128, 128, 128, 0.199);
+            border-radius: 7px;
+            padding: 20px;
+            
+            /* Base igual para todos */
+            flex-basis: 150px; 
+            flex-grow: 1;
+            flex-shrink: 1;
+        }
+
+        .cards h3 {
+            margin-bottom: 10px;
+        }
+
+        /* Classes específicas para controlar o tamanho de cada card */
+        .vendas {
+            flex-grow: 3; /* Estica muito mais que os outros */
+        }
+
+        .usuarios {
+            flex-shrink: 2; /* Encolhe mais rápido em telas pequenas */
+        }
+
+        .acessos {
+            flex-grow: 0; /* Não cresce além do flex-basis */
+            flex-shrink: 0; /* Não encolhe */
+        }
+
+        
+        section > h3 {
+            margin-bottom: 15px;
+        }
+
+        .lista-atividades {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        /* O contêiner de cada linha da lista */
+        .item {
+            display: flex;
+            border-radius: 7px;
+            overflow: hidden; /* Corta as cores de fundo para respeitar a borda arredondada ( pesquisei na i.a essa tag prof :) ) */
+            background-color: rgba(102, 102, 102, 0.1);
+        }
+
+        .item h4,
+        .item .p1,
+        .item time {
+            padding: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        
+        .item h4 {
+            background-color: rgba(226, 51, 147, 0.616);
+            flex-basis: 220px;
+            flex-shrink: 0;
+        }
+
+      
+        .item .p1 {
+            background-color: rgb(47, 255, 116);
+            flex-grow: 1; 
+        }
+
+        
+        .item time {
+            background-color: rgba(71, 172, 255, 0.678);
+            flex-basis: 150px;
+            flex-shrink: 0;
+            justify-content: center; 
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="tudo">
+
+        <aside>
+            <h2>Painel</h2>
+            <a href="#">Dashboard</a>
+            <a href="#">Usuários</a>
+            <a href="#">Relatórios</a>
+            <a href="#">Configurações</a>
+        </aside>
+
+        <div class="container">
+
+            <header>
+                <h1>Visão Geral</h1>
+                <p class="admin">🔓 Admin</p>
+            </header>
+
+            <main>
+
+                <section class="cards">
+                    <article class="card usuarios">
+                        <h3>Usuários</h3>
+                        <p>1200</p>
+                    </article>
+
+                    <article class="card vendas">
+                        <h3>Vendas</h3>
+                        <p>R$ 8.500</p>
+                    </article>
+
+                    <article class="card acessos">
+                        <h3>Acessos</h3>
+                        <p>3.200</p>
+                    </article>
+                </section>
+
+                <section>
+                    <h3>Últimas atividades</h3>
+
+                    <div class="lista-atividades">
+
+                        <article class="item">
+                            <h4>Ozzy Osbourne</h4>
+                            <p class="p1">Comprou um curso avançado de JS</p>
+                            <time>Hoje</time>
+                        </article>
+
+                        <article class="item">
+                            <h4>Ronnie James Dio</h4>
+                            <p class="p1">Atualizou o perfil com novas informações</p>
+                            <time>Ontem</time>
+                        </article>
+
+                        <article class="item">
+                            <h4>Ian Gillan</h4>
+                            <p class="p1">Fez login no sistema</p>
+                            <time>2 dias atrás</time>
+                        </article>
+
+                        <article class="item">
+                            <h4>Tony Martin</h4>
+                            <p class="p1">Solicitou suporte técnico</p>
+                            <time>3 dias atrás</time>
+                        </article>
+
+                    </div>
+
+                </section>
+
+            </main>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

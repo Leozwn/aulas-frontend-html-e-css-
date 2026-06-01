@@ -1,0 +1,202 @@
+/* CSS Reset : limpar regras padrão/iniciais */
+
+/* CSS reset controlado: você esolhe */
+/* ex: body , h1, h2, p,{
+margin: 0;
+padding: 0;
+} 
+*/
+
+/* CSS reset radical: TUDO! */
+/*
+* {
+    margin: 0;
+    padding: 0;
+}
+*/
+
+
+
+
+
+
+body {
+    background-color: rgb(170, 3, 100);
+    font-family: cursive;
+    line-height: 1.6;
+    color: rgb(0, 0, 0);
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    padding: 0;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: white;
+    border: solid 3px rgb(255, 255, 255);
+    letter-spacing: 3px;
+}
+    
+
+header {
+    color: rgb(243, 229, 40);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+    padding-block: 10px;
+    margin-right: 1500px;
+    background-color: rgb(255, 128, 156);
+}
+    
+
+main {
+    width: 40%;
+    margin-inline: auto;
+    background-color: rgb(255, 255, 255);
+    padding: 10px;
+    margin-block-start: 20px;
+    border-radius: 45px;
+    box-shadow: rgb(255, 255, 255) 5px 2px 100px;
+    text-align: left;
+}
+
+p strong {
+    color: black;
+    border: solid 3px rgb(0, 0, 0);
+    background-color: rgb(224, 240, 8);
+}
+    
+
+h2 {
+    border-inline-start: rgb(235, 19, 181) 10px solid;
+    border-block-end: rgb(235, 19, 181) 10px solid;
+    color: black;
+    padding-inline-start: 20px;
+}
+dl {
+    color: black;
+    font-style: oblique;
+}
+
+/* class */
+.sombratexto { text-shadow: rgb(235, 19, 181) 1px 1px 5px;}
+.sombratexto2 { text-shadow: rgb(240, 13, 89) 1px 1px 3px;}
+.caixa { box-shadow: rgb(235, 19, 181) 0px 0px 3px;}
+.caixa2 { box-shadow: rgb(23, 241, 223) 0px 10px 7px;}
+
+summary {
+    color: rgb(0, 0, 0);
+    background-color: rgb(255, 89, 144);
+    border-block-end: red 10px solid;
+}
+
+aside {
+    background-color: rgb(226, 152, 190);
+    color: rgb(255, 5, 5);
+    font-size: larger;
+}
+
+a {
+    color: aqua;
+    padding: 4px;
+    border-radius: 4px;
+}
+
+a:hover {
+    background-color: blue;
+}
+
+footer {
+    color: white;
+    text-align: end;
+    border: solid rgb(0, 0, 0);
+    padding: 30px;
+    background-color: rgb(173, 3, 145);
+    box-shadow: white 5px 2px 50px;
+}
+
+p {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+    font-style: italic;
+}
+
+/* grupo de seletores */
+/* h1:hover, p strong:hover, dt:hover {
+    background-color: rgb(16, 126, 223);
+} */ 
+
+:is(h1, p strong, dt):hover {
+    background-color: rgb(16, 126, 223);
+}
+
+
+/* .exemplo {text-align: center;}
+
+.exemplo img {
+    transform: scale(0.7) rotate(10deg) translateY(0);
+    transition: 3s;
+}
+
+
+.exemplo img:hover {
+  transform: scale(1) rotate(0) translateY(-100px);
+} */
+
+
+.exemplo-dois {text-align: center;}
+
+.exemplo-dois a {
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+    background-color: rgb(255, 255, 255);
+    padding: 4px;
+    transition: 2s;
+    transform: scale(1);
+
+    /* Necessário para permitir efeitosde transformação */
+    display: inline-block;
+}
+
+.exemplo-dois a:hover {
+    background-color: rgb(255, 0, 0);
+    transform: scale(1.2);
+}
+
+
+
+/* Regra com CSS Nesting (aninhado) 
+Podemos usar este recurso para evitar a necessidade de criar diversas regras baseadas em seletor descendente (ou mesmo múltiplas classes). O Nesting permite agrupar regras de um mesmo contexto.
+No exemplo abaixo , são regras relacionadas á div com a classe exemplo*/
+.exemplo {
+    text-align: center;
+
+    img {
+        transform: scale(0.7) rotate(10deg) translateY(0);
+        transition: 3s;
+
+        &:hover {
+             transform: scale(1) rotate(0) translateY(-100px);
+        }
+    }
+    
+}
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

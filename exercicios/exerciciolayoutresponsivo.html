@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ex:Layout Responsivo</title>
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        body,
+        p,
+        h1,
+        h2 {
+            padding: 0;
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* mobile first=pequeno primeiro */
+
+        html { font-size: 16px;}
+
+        body { 
+            background-color: bisque;
+            
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        
+        h1 {
+            font-size: 2rem;
+        }
+        
+        
+        header {
+            background-color: darkblue;
+            text-align: center;
+            padding: 1rem;
+            /* deixa o header fixo */
+            position: sticky;  
+            top: 0;
+        }
+        
+        
+        nav {
+            margin-top: 10px;
+            
+            a {
+                text-decoration: none;
+                background-color: yellow;
+                font-weight: bold;
+                padding: 0.75rem 1rem;
+                margin: -2px;
+            }
+        }
+        
+        main {
+            margin: 10px;
+            flex: 1;
+            
+            
+            
+            /* .class(coluna) {
+                3 flex la} */
+                
+            }
+            
+            
+            
+            
+            
+            footer {
+                background-color:grey;
+                padding: 10px;
+                
+                p {
+                    margin: 10px; 
+                }
+            }
+            
+            h2, p {
+                padding: 0.5rem;
+            }
+            /* class */
+            .colunaA {
+                background-color: green;
+            }
+            .colunaB {
+                background-color: orange;
+            }
+            .colunaC {
+                background-color: blueviolet;
+            }
+            
+          .colunaA, .colunaB, .colunaC {min-height: 200px;} 
+          
+           
+          @media (min-width: 700px) {
+                header {
+                    display: flex;
+                    justify-content: space-between;
+
+                    a {
+                        margin: 2px;
+                    }
+                }
+                
+                main {
+                    display: flex;
+                    /* quebra linha */
+                    flex-wrap: wrap;
+                    
+                    gap: 10px;
+                }
+                
+                .colunaA {
+                    flex-basis: 60%;
+                }
+                .colunaB {
+                    flex-basis: 38%;
+                }
+                .colunaC {
+                    flex-basis: 100%;
+                }
+                /*ou
+                 .colunaA {flex-basis: cacl(60% - 0.5rem);}
+                 .colunaB {flex-basis: cacl(40% - 0.5rem);}
+                .colunaC {flex-basis: 100%;} */
+            }
+            
+            @media (min-width: 800px) {
+                header {position: static;}
+
+                .colunaA {
+                    flex-basis: 33%;
+                }
+                .colunaB {
+                    flex-basis: 33%;
+                }
+                .colunaC {
+                    flex-basis: 31%;
+                }
+
+            }
+           
+            @media (min-width: 1000px) {
+                main {
+                    margin: 10px auto;
+                    max-width: 980px;
+                }
+            }
+            
+            </style>
+</head>
+
+<body>
+    <header>
+        <h1>Layout Responsivo</h1>
+        <nav>
+            <a href="">LINK</a>
+            <a href="">LINK</a>
+            <a href="">LINK</a>
+        </nav>
+    </header>
+    <main>
+
+        <article class="colunaA">
+            <h2>Coluna A</h2>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi delectus aperiam maxime, eveniet similique officia? Quasi sed, debitis a eligendi at commodi quisquam quas maiores voluptate neque ab illo maxime repellendus necessitatibus! Recusandae laudantium dolore nobis animi. Exercitationem sequi perferendis quod unde architecto quae a iusto cumque iste. Iste, illo!<br><br>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veniam, dolore ullam amet vel deleniti quae magnam corporis repudiandae, eum consequatur nobis iusto odit qui numquam suscipit cupiditate voluptatum blanditiis adipisci repellat incidunt officiis, odio molestias. Harum sed neque voluptatum possimus.
+            </p>
+        </article>
+
+        <article class="colunaB">
+            <h2>Coluna B</h2>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi delectus aperiam maxime, eveniet similique officia? Quasi sed, debitis a eligendi at commodi quisquam quas maiores voluptate neque ab illo maxime repellendus necessitatibus! Recusandae laudantium dolore nobis animi. Exercitationem sequi perferendis quod unde architecto quae a iusto cumque iste. Iste, illo!<br><br>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veniam, dolore ullam amet vel deleniti quae magnam corporis repudiandae, eum consequatur nobis iusto odit qui numquam suscipit cupiditate voluptatum blanditiis adipisci repellat incidunt officiis, odio molestias. Harum sed neque voluptatum possimus.</p>
+        </article>
+
+        <article class="colunaC">
+            <h2>Coluna C</h2>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi delectus aperiam maxime, eveniet similique officia? Quasi sed, debitis a eligendi at commodi quisquam quas maiores voluptate neque ab illo maxime repellendus necessitatibus! Recusandae laudantium dolore nobis animi. Exercitationem sequi perferendis quod unde architecto quae a iusto cumque iste. Iste, illo!<br><br>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veniam, dolore ullam amet vel deleniti quae magnam corporis repudiandae, eum consequatur nobis iusto odit qui numquam suscipit cupiditate voluptatum blanditiis adipisci repellat incidunt officiis, odio molestias. Harum sed neque voluptatum possimus.</p>
+        </article>
+
+    </main>
+    
+    <footer>
+        <h2>Rodapé</h2>
+            <p>Lorem ipsum dolor sit amet.</p>
+    </footer>
+
+
+
+
+</body>
+
+</html>
+               
+
+
+                
+                
+
+
+
+
+                
+                    
+                
+                
+               
+            
+            

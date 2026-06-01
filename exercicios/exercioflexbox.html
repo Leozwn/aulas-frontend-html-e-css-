@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio Flexbox</title>
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        body,
+        p,
+        h1,
+        h2 {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            font-family: cursive;
+        }
+
+        nav {
+            background-color: rgb(250, 236, 160);
+            display: flex;
+            justify-content: space-evenly;
+            flex-direction: row;
+            height: 40px;
+            border-radius: 7px;
+            font-size: 25px;
+            width:70%;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+
+
+        a {
+            text-decoration: none;
+            font-weight: bold;
+            color: black;
+            flex-wrap: wrap;
+        }
+
+
+        header {
+            background-color: rgb(136, 226, 241);
+            min-height: 100px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+            
+
+        .cards {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            align-content: flex-start;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            margin-block-end: 2rem;
+            height: 300px;
+            margin-block-start: 2rem;
+
+        }
+
+        .card {
+            width: 250px;
+            padding: 1rem;
+            min-height: 200px;
+            border: solid 2px gray;
+            border-radius: 5px;
+
+        }
+    </style>
+
+
+
+
+
+</head>
+
+<body>
+    <header>
+        <h1>Exercicio FlexBox</h1>
+        <nav>
+            <a href="">Inicio</a>
+            <a href="">Notícias</a>
+            <a href="">Cursos</a>
+            <a href="">Contato</a>
+
+        </nav>
+    </header>
+
+    <main class="cards">
+
+        <article class="card">
+            <h2>Nova IA no mercado</h2>
+            <p>tecnologia promete revolucionar o setor.</p>
+        </article>
+
+
+        <article class="card">
+            <h2>CSS moderno</h2>
+            <p>Novos recursos chegam aos navegadores.</p>
+        </article>
+
+        <article class="card">
+            <h2>JavaScript2026</h2>
+            <p>Atualizações e mlehores práticas.</p>
+        </article>
+
+        <article class="card">
+            <h2>Frameworks em alta</h2>
+            <p>Quais tecnologia dominarão o mercado.</p>
+        </article>
+    </main>
+</body>
+
+</html>
