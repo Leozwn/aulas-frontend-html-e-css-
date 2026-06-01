@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="One Tabacaria - Narguilés, Essências, Vapes e Acessórios Premium | Entrega para todo o Brasil">
+  <title>One Tabacaria — Narguilés & Headshop Premium</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <style>
+    /* ── Hero ── */
+    .hero-bg {
+      position: relative;
+      min-height: 100vh;
+      background:
+        linear-gradient(
+          160deg,
+          rgba(0,0,0,0.45) 0%,
+          rgba(5,80,40,0.28) 50%,
+          rgba(0,0,0,0.60) 100%
+        ),
+        url('./imagens/Hero-img-ONE-TABACARIA.webp') center center / cover no-repeat;
+    }
+    @media (min-width: 768px) {
+      .hero-bg { background-attachment: fixed; }
+    }
+
+    /* ── Hero tagline ── */
+    .hero-tagline {
+      background: rgba(0,0,0,0.52);
+      border-left: 4px solid #10b981;
+      text-shadow: 0 1px 6px rgba(0,0,0,0.9);
+    }
+
+    /* ── Nav underline ── */
+    nav a { position: relative; }
+    nav a::after {
+      content: "";
+      background-color: #10b981;
+      width: 0;
+      height: 3px;
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      transition: width 0.35s ease;
+    }
+    nav a:hover::after,
+    nav a:focus::after { width: 100%; }
+
+    /* ── Cards ── */
+    .product-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 24px 40px -8px rgba(16,185,129,0.45);
+    }
+    .category-card { transition: transform 0.3s ease, background 0.3s ease; }
+    .category-card:hover { transform: translateY(-4px); }
+
+    /* ── Blog cards ── */
+    .blog-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .blog-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 36px -8px rgba(16,185,129,0.35);
+    }
+
+    /* ── Neon text ── */
+    .neon-text { text-shadow: 0 0 12px #10b981, 0 0 28px rgba(16,185,129,0.45); }
+
+    /* ── Cart sidebar ── */
+    #cart-sidebar {
+      transform: translateX(100%);
+      transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+    }
+    #cart-sidebar.open { transform: translateX(0); }
+
+    /* ── Mobile menu ── */
+    #mobile-menu {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+    }
+    #mobile-menu.open { max-height: 700px; }
+
+    /* ── Scrollbar ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #18181b; }
+    ::-webkit-scrollbar-thumb { background: #10b981; border-radius: 3px; }
+
+    /* ── Badge pulse ── */
+    @keyframes pulse-green {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(16,185,129,0.7); }
+      50%       { box-shadow: 0 0 0 6px rgba(16,185,129,0); }
+    }
+    .badge-pulse { animation: pulse-green 2s infinite; }
+  </style>
+</head>
+<body class="bg-zinc-950 text-white font-sans">
+
+  <!-- ═══════════════ NAVBAR ═══════════════ -->
+  <nav class="bg-black/95 sticky top-0 z-50 border-b border-emerald-500/40 backdrop-blur-sm">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-3 group">
+        <i class="fa-solid fa-smoke text-4xl text-emerald-400 group-hover:drop-shadow-[0_0_12px_#10b981] transition"></i>
+        <h1 class="text-2xl md:text-3xl font-black tracking-tight neon-text">ONE TABACARIA</h1>
+      </a>
+
+      <!-- Desktop links -->
+      <div class="hidden lg:flex items-center gap-7 text-sm font-medium">
+        <a href="#" class="hover:text-emerald-400 transition">Início</a>
+        <a href="#narguiles" class="hover:text-emerald-400 transition">Narguilés</a>
+        <a href="#essencias" class="hover:text-emerald-400 transition">Essências</a>
+        <a href="#acessorios" class="hover:text-emerald-400 transition">Acessórios</a>
+        <a href="produtos.html" class="hover:text-emerald-400 transition">Produtos</a>
+        <a href="#blog" class="hover:text-emerald-400 transition">Blog</a>
+      </div>
+        
+
+      <!-- Actions -->
+      <div class="flex items-center gap-4">
+        <!-- Search (desktop) -->
+        <div class="hidden md:flex items-center bg-zinc-800 rounded-xl px-3 py-2 gap-2 border border-zinc-700 focus-within:border-emerald-500 transition">
+          <i class="fa-solid fa-search text-zinc-400 text-sm"></i>
+          <input type="text" placeholder="Buscar produto..." class="bg-transparent text-sm outline-none w-40 placeholder-zinc-500">
+        </div>
+
+        <!-- Cart -->
+        <button onclick="openCart()" class="relative p-2 hover:text-emerald-400 transition" aria-label="Carrinho">
+          <i class="fa-solid fa-shopping-bag text-2xl"></i>
+          <span id="cart-count" class="absolute -top-1 -right-1 bg-emerald-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center badge-pulse hidden">0</span>
+        </button>
+
+        <!-- WhatsApp -->
+        <a href="https://wa.me/5511970153896" target="_blank"
+           class="bg-emerald-500 hover:bg-emerald-400 text-black px-5 py-2.5 rounded-xl font-semibold text-sm flex items-center gap-2 transition">
+          <i class="fa-brands fa-whatsapp text-lg"></i>
+          <span class="hidden sm:inline">WhatsApp</span>
+        </a>
+
+        <!-- Hamburger (mobile) -->
+        <button onclick="toggleMobileMenu()" class="lg:hidden p-2 hover:text-emerald-400 transition" aria-label="Menu">
+          <i id="hamburger-icon" class="fa-solid fa-bars text-xl"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="lg:hidden bg-zinc-900 border-t border-zinc-800">
+      <div class="flex flex-col px-6 py-4 gap-4 text-sm font-medium">
+        <div class="flex items-center bg-zinc-800 rounded-xl px-3 py-2 gap-2 border border-zinc-700">
+          <i class="fa-solid fa-search text-zinc-400"></i>
+          <input type="text" placeholder="Buscar produto..." class="bg-transparent outline-none w-full placeholder-zinc-500">
+        </div>
+        <a href="#" onclick="toggleMobileMenu()" class="hover:text-emerald-400 py-2 border-b border-zinc-800">Início</a>
+        <a href="#narguiles" onclick="toggleMobileMenu()" class="hover:text-emerald-400 py-2 border-b border-zinc-800">Narguilés</a>
+        <a href="#essencias" onclick="toggleMobileMenu()" class="hover:text-emerald-400 py-2 border-b border-zinc-800">Essências</a>
+        <a href="#vapes" onclick="toggleMobileMenu()" class="hover:text-emerald-400 py-2 border-b border-zinc-800">Vapes</a>
+        <a href="#acessorios" onclick="toggleMobileMenu()" class="hover:text-emerald-400 py-2 border-b border-zinc-800">Acessórios</a>
+        <a href="produtos.html" onclick="toggleMobileMenu()" class="hover:text-emerald-400 py-2 border-b border-zinc-800">Produtos</a>
+        <a href="#blog" onclick="toggleMobileMenu()" class="hover:text-emerald-400 py-2 border-b border-zinc-800">Blog</a>
+        <a href="#novidades" onclick="toggleMobileMenu()" class="hover:text-emerald-400 py-2">Novidades</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═══════════════ HERO ═══════════════ -->
+  <section class="hero-bg min-h-screen flex items-center">
+    <div class="relative z-10 w-full max-w-7xl mx-auto px-6 py-24 text-center">
+      
+        
+      </span>
+      <h2 class="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-6 leading-none neon-text">
+        ONE<br>TABACARIA<br>
+      </h2>
+
+      <!-- Tagline de efeito -->
+      <p class="hero-tagline text-base md:text-xl font-semibold italic text-emerald-100 max-w-2xl mx-auto mb-8 px-6 py-4 rounded-2xl leading-relaxed">
+        "Do narguilé artesanal às essências mais raras — aqui cada sessão vira uma experiência inesquecível, com qualidade premium e preços que cabem no seu estilo de vida."
+      </p>
+
+      <p class="text-lg md:text-2xl mb-10 text-emerald-100 max-w-2xl mx-auto">
+        Narguilés completos &bull; Essências premium &bull; Vapes &bull; Acessórios<br>
+        Entrega garantida para todo o Brasil
+      </p>
+      <div class="flex flex-col sm:flex-row justify-center gap-4">
+        <a href="produtos.html"
+           class="bg-emerald-500 hover:bg-emerald-400 text-black px-10 py-4 rounded-2xl text-lg font-bold transition hover:scale-105 shadow-lg shadow-emerald-500/30">
+          <i class="fa-solid fa-store mr-2"></i>Ver todos os produtos
+        </a>
+        <a href="https://wa.me/5511970153896" target="_blank"
+           class="border-2 border-white/70 hover:border-emerald-400 hover:text-emerald-400 px-10 py-4 rounded-2xl text-lg font-bold transition hover:scale-105">
+          <i class="fa-brands fa-whatsapp mr-2"></i>Falar no WhatsApp
+        </a>
+      </div>
+
+      <!-- Stats -->
+      <div class="mt-16 grid grid-cols-3 gap-4 max-w-xl mx-auto">
+        <div class="bg-black/40 backdrop-blur-sm rounded-2xl p-4 border border-white/10">
+          <p class="text-3xl font-black text-emerald-400">35K+</p>
+          <p class="text-xs text-zinc-300 mt-1">Pedidos realizados</p>
+        </div>
+        <div class="bg-black/40 backdrop-blur-sm rounded-2xl p-4 border border-white/10">
+          <p class="text-3xl font-black text-emerald-400">500+</p>
+          <p class="text-xs text-zinc-300 mt-1">Produtos disponíveis</p>
+        </div>
+        <div class="bg-black/40 backdrop-blur-sm rounded-2xl p-4 border border-white/10">
+          <p class="text-3xl font-black text-emerald-400">4.9★</p>
+          <p class="text-xs text-zinc-300 mt-1">Avaliação dos clientes</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <a href="#trust" class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 text-white/60 hover:text-emerald-400 transition animate-bounce">
+      <i class="fa-solid fa-chevron-down text-2xl"></i>
+    </a>
+  </section>
+
+  <!-- ═══════════════ TRUST BADGES ═══════════════ -->
+  <section id="trust" class="bg-zinc-900 border-y border-zinc-800 py-8">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        <div class="flex flex-col items-center gap-2">
+          <i class="fa-solid fa-truck-fast text-3xl text-emerald-400"></i>
+          <p class="font-semibold text-sm">Entrega Rápida</p>
+          <p class="text-xs text-zinc-400">Para todo o Brasil</p>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <i class="fa-solid fa-shield-halved text-3xl text-emerald-400"></i>
+          <p class="font-semibold text-sm">Compra Segura</p>
+          <p class="text-xs text-zinc-400">Site 100% protegido</p>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <i class="fa-solid fa-rotate-left text-3xl text-emerald-400"></i>
+          <p class="font-semibold text-sm">Troca Garantida</p>
+          <p class="text-xs text-zinc-400">7 dias para trocar</p>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <i class="fa-solid fa-headset text-3xl text-emerald-400"></i>
+          <p class="font-semibold text-sm">Suporte Humano</p>
+          <p class="text-xs text-zinc-400">Atendimento via WhatsApp</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ CATEGORIES ═══════════════ -->
+  <section class="py-20" id="categorias">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-4xl font-black text-center mb-3">Escolha sua categoria</h2>
+      <p class="text-center text-zinc-400 mb-12">Tudo que você precisa para uma experiência premium</p>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
+        <a href="#narguiles"
+           class="category-card bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-3xl p-8 text-center hover:from-emerald-950 hover:to-zinc-900 border border-zinc-700 hover:border-emerald-500 transition">
+          <i class="fa-solid fa-wind text-4xl text-emerald-400 mb-4 block"></i>
+          <p class="font-bold text-lg">Narguilés Completos</p>
+          <p class="text-xs text-zinc-400 mt-1">A partir de R$ 55</p>
+        </a>
+        <a href="#essencias"
+           class="category-card bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-3xl p-8 text-center hover:from-emerald-950 hover:to-zinc-900 border border-zinc-700 hover:border-emerald-500 transition">
+          <i class="fa-solid fa-droplet text-4xl text-emerald-400 mb-4 block"></i>
+          <p class="font-bold text-lg">Essências & Sabores</p>
+          <p class="text-xs text-zinc-400 mt-1">A partir de R$ 18</p>
+        </a>
+        <a href="#vapes"
+           class="category-card bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-3xl p-8 text-center hover:from-emerald-950 hover:to-zinc-900 border border-zinc-700 hover:border-emerald-500 transition">
+          <i class="fa-solid fa-cloud text-4xl text-emerald-400 mb-4 block"></i>
+          <p class="font-bold text-lg">Vapes & Disposables</p>
+          <p class="text-xs text-zinc-400 mt-1">A partir de R$ 89</p>
+        </a>
+        <a href="#acessorios"
+           class="category-card bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-3xl p-8 text-center hover:from-emerald-950 hover:to-zinc-900 border border-zinc-700 hover:border-emerald-500 transition">
+          <i class="fa-solid fa-screwdriver-wrench text-4xl text-emerald-400 mb-4 block"></i>
+          <p class="font-bold text-lg">Acessórios & Headshop</p>
+          <p class="text-xs text-zinc-400 mt-1">A partir de R$ 5</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ DESTAQUE PRODUCTS ═══════════════ -->
+  <section class="py-6 pb-20 bg-zinc-950" id="produtos">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex items-center justify-between mb-10">
+        <div>
+          <h2 class="text-4xl font-black">Produtos em Destaque</h2>
+          <p class="text-emerald-400 mt-1">Os mais vendidos da semana</p>
+        </div>
+        <a href="produtos.html" class="hidden md:inline-flex items-center gap-2 text-emerald-400 hover:text-emerald-300 font-medium transition">
+          Ver todos <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="product-grid"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ NARGUILES SECTION ═══════════════ -->
+  <section class="py-20 bg-zinc-900" id="narguiles">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex items-center gap-4 mb-10">
+        <i class="fa-solid fa-wind text-4xl text-emerald-400"></i>
+        <div>
+          <h2 class="text-4xl font-black">Narguilés Completos</h2>
+          <p class="text-zinc-400">Do mais acessível ao top de linha</p>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="narguiles-grid"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ PROMO BANNER ═══════════════ -->
+  <section class="py-20 bg-emerald-950 border-y border-emerald-800">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-8">
+      <div>
+        <span class="text-emerald-400 font-bold text-sm uppercase tracking-widest">Oferta especial</span>
+        <h3 class="text-4xl md:text-5xl font-black mt-2">Compre 3<br>Leve 4</h3>
+        <p class="text-zinc-300 mt-3 max-w-md">Válido para essências selecionadas. Monte seu kit completo e economize. Parcele em até 12x sem juros.</p>
+      </div>
+      <div class="flex flex-col items-center gap-4 text-center">
+        <div class="bg-black/30 rounded-3xl px-10 py-6 border border-emerald-500/40">
+          <p class="text-zinc-400 text-sm">Use o cupom</p>
+          <p class="text-4xl font-black text-emerald-400 tracking-widest mt-1">ONETAB10</p>
+          <p class="text-zinc-400 text-sm mt-1">10% OFF na primeira compra</p>
+        </div>
+        <a href="https://wa.me/5511970153896?text=Ol%C3%A1%21%20Quero%20aproveitar%20a%20promo%C3%A7%C3%A3o%20ONETAB10" target="_blank"
+           class="bg-emerald-500 hover:bg-emerald-400 text-black px-8 py-3 rounded-2xl font-bold transition hover:scale-105">
+          Aproveitar oferta
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ ESSENCIAS SECTION ═══════════════ -->
+  <section class="py-20" id="essencias">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex items-center gap-4 mb-10">
+        <i class="fa-solid fa-droplet text-4xl text-emerald-400"></i>
+        <div>
+          <h2 class="text-4xl font-black">Essências & Sabores</h2>
+          <p class="text-zinc-400">Nacionais e importadas — centenas de sabores</p>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="essencias-grid"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ VAPES SECTION ═══════════════ -->
+  <section class="py-20 bg-zinc-900" id="vapes">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex items-center gap-4 mb-10">
+        <i class="fa-solid fa-cloud text-4xl text-emerald-400"></i>
+        <div>
+          <h2 class="text-4xl font-black">Vapes & Disposables</h2>
+          <p class="text-zinc-400">Pods, mods e descartáveis das melhores marcas</p>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="vapes-grid"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ ACESSORIOS SECTION ═══════════════ -->
+  <section class="py-20" id="acessorios">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex items-center gap-4 mb-10">
+        <i class="fa-solid fa-screwdriver-wrench text-4xl text-emerald-400"></i>
+        <div>
+          <h2 class="text-4xl font-black">Acessórios & Headshop</h2>
+          <p class="text-zinc-400">Tudo para completar a sua experiência</p>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="acessorios-grid"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ NOVIDADES ═══════════════ -->
+  <section id="novidades" class="py-20 bg-zinc-900">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-4xl font-black text-center mb-3">Lançamentos & Novidades</h2>
+      <p class="text-center text-zinc-400 mb-12">Acabou de chegar no estoque</p>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6" id="novidades-grid"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ TESTIMONIALS ═══════════════ -->
+  <section class="py-20">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-4xl font-black text-center mb-3">O que dizem nossos clientes</h2>
+      <p class="text-center text-zinc-400 mb-12">Mais de 35.000 pedidos — veja quem confia na gente</p>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-zinc-900 rounded-3xl p-8 border border-zinc-800">
+          <div class="flex items-center gap-1 text-yellow-400 mb-4">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <p class="text-zinc-300 mb-5">"Comprei o Mahalla Hype Mini e chegou em 2 dias aqui em MG. Embalagem perfeita, produto original. Já é a minha terceira compra."</p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-emerald-900 flex items-center justify-center font-bold text-emerald-400">G</div>
+            <div>
+              <p class="font-semibold text-sm">Gabriel M.</p>
+              <p class="text-xs text-zinc-500">Belo Horizonte, MG</p>
+            </div>
+          </div>
+        </div>
+        <div class="bg-zinc-900 rounded-3xl p-8 border border-zinc-800">
+          <div class="flex items-center gap-1 text-yellow-400 mb-4">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <p class="text-zinc-300 mb-5">"Essências sempre frescas e bem embaladas. Preço imbatível, promoção compre 3 leve 4 me salvou. Atendimento no WhatsApp é rápido demais."</p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-emerald-900 flex items-center justify-center font-bold text-emerald-400">A</div>
+            <div>
+              <p class="font-semibold text-sm">Amanda S.</p>
+              <p class="text-xs text-zinc-500">São Paulo, SP</p>
+            </div>
+          </div>
+        </div>
+        <div class="bg-zinc-900 rounded-3xl p-8 border border-zinc-800">
+          <div class="flex items-center gap-1 text-yellow-400 mb-4">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+          </div>
+          <p class="text-zinc-300 mb-5">"Vaporesso Xros Pro chegou lacrado e com nota fiscal. Melhor custo-benefício que encontrei. Já indiquei para todos os amigos."</p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-emerald-900 flex items-center justify-center font-bold text-emerald-400">R</div>
+            <div>
+              <p class="font-semibold text-sm">Rafael T.</p>
+              <p class="text-xs text-zinc-500">Rio de Janeiro, RJ</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ BLOG ═══════════════ -->
+  <section id="blog" class="py-20 bg-zinc-950">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <span class="inline-block bg-emerald-500/20 border border-emerald-500/50 text-emerald-300 text-sm font-semibold px-4 py-1.5 rounded-full mb-4 tracking-widest uppercase">Blog</span>
+        <h2 class="text-4xl font-black">Mundo da Tabacaria</h2>
+        <p class="text-zinc-400 mt-2">Dicas, guias e novidades para você fumar melhor</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8">
+
+        <!-- Artigo 1 -->
+        <article class="blog-card bg-zinc-900 rounded-3xl overflow-hidden border border-zinc-800 hover:border-emerald-500/50 transition group">
+          <div class="overflow-hidden h-52">
+            <img src="https://picsum.photos/id/1060/600/400" alt="Narguilé para iniciantes"
+                 class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+          </div>
+          <div class="p-6">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="bg-emerald-500/20 text-emerald-400 text-xs font-bold px-2.5 py-1 rounded-full">Narguilé</span>
+              <span class="text-zinc-500 text-xs">10 Mai 2026</span>
+            </div>
+            <h3 class="font-black text-lg mb-3 group-hover:text-emerald-400 transition leading-snug">
+              Como escolher o narguilé ideal para iniciantes
+            </h3>
+            <p class="text-zinc-400 text-sm leading-relaxed mb-5">
+              Escolher o primeiro narguilé pode parecer complicado com tantas opções. Descubra os modelos mais recomendados, o que considerar no tamanho, nos materiais e como montar sua primeira sessão perfeita.
+            </p>
+            <a href="#" class="text-emerald-400 hover:text-emerald-300 text-sm font-semibold flex items-center gap-2 transition">
+              Ler artigo <i class="fa-solid fa-arrow-right text-xs"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Artigo 2 -->
+        <article class="blog-card bg-zinc-900 rounded-3xl overflow-hidden border border-zinc-800 hover:border-emerald-500/50 transition group">
+          <div class="overflow-hidden h-52">
+            <img src="https://picsum.photos/id/292/600/400" alt="Guia de essências"
+                 class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+          </div>
+          <div class="p-6">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="bg-emerald-500/20 text-emerald-400 text-xs font-bold px-2.5 py-1 rounded-full">Essências</span>
+              <span class="text-zinc-500 text-xs">05 Mai 2026</span>
+            </div>
+            <h3 class="font-black text-lg mb-3 group-hover:text-emerald-400 transition leading-snug">
+              Essências: guia completo de sabores para todos os gostos
+            </h3>
+            <p class="text-zinc-400 text-sm leading-relaxed mb-5">
+              Das frutas tropicais aos sabores mentolados, o universo das essências para narguilé é imenso. Entenda a diferença entre marcas nacionais e importadas e encontre o seu favorito.
+            </p>
+            <a href="#" class="text-emerald-400 hover:text-emerald-300 text-sm font-semibold flex items-center gap-2 transition">
+              Ler artigo <i class="fa-solid fa-arrow-right text-xs"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Artigo 3 -->
+        <article class="blog-card bg-zinc-900 rounded-3xl overflow-hidden border border-zinc-800 hover:border-emerald-500/50 transition group">
+          <div class="overflow-hidden h-52">
+            <img src="https://picsum.photos/id/96/600/400" alt="Vape vs Narguilé"
+                 class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+          </div>
+          <div class="p-6">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="bg-emerald-500/20 text-emerald-400 text-xs font-bold px-2.5 py-1 rounded-full">Comparativo</span>
+              <span class="text-zinc-500 text-xs">28 Abr 2026</span>
+            </div>
+            <h3 class="font-black text-lg mb-3 group-hover:text-emerald-400 transition leading-snug">
+              Vape vs Narguilé: qual é a melhor escolha para você?
+            </h3>
+            <p class="text-zinc-400 text-sm leading-relaxed mb-5">
+              Ambos oferecem experiências únicas, mas com características bem diferentes. Veja os prós e contras de cada opção e descubra qual se encaixa melhor no seu estilo de vida.
+            </p>
+            <a href="#" class="text-emerald-400 hover:text-emerald-300 text-sm font-semibold flex items-center gap-2 transition">
+              Ler artigo <i class="fa-solid fa-arrow-right text-xs"></i>
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ NEWSLETTER ═══════════════ -->
+  <section class="py-16 bg-emerald-950 border-y border-emerald-900">
+    <div class="max-w-2xl mx-auto px-6 text-center">
+      <i class="fa-solid fa-envelope-open-text text-5xl text-emerald-400 mb-5 block"></i>
+      <h3 class="text-3xl font-black mb-2">Receba ofertas exclusivas</h3>
+      <p class="text-zinc-300 mb-8">Cadastre seu e-mail e ganhe 10% OFF na primeira compra + alertas de novidades.</p>
+      <form class="flex flex-col sm:flex-row gap-3 justify-center" onsubmit="subscribeNewsletter(event)">
+        <input type="email" id="nl-email" placeholder="seu@email.com" required
+               class="flex-1 bg-black/40 border border-emerald-700 rounded-xl px-5 py-3 text-white placeholder-zinc-500 outline-none focus:border-emerald-400 transition">
+        <button type="submit"
+                class="bg-emerald-500 hover:bg-emerald-400 text-black px-8 py-3 rounded-xl font-bold transition hover:scale-105">
+          Quero meu desconto
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ═══════════════ SOBRE ═══════════════ -->
+  <section class="py-20 max-w-4xl mx-auto px-6 text-center">
+    <i class="fa-solid fa-smoke text-5xl text-emerald-400 mb-6 block"></i>
+    <h2 class="text-4xl font-black mb-6">ONE TABACARIA</h2>
+    <p class="text-lg text-zinc-300 leading-relaxed">A sua tabacaria online com a maior variedade de narguilés, essências nacionais e importadas, vapes, acessórios e headshop. Atendimento rápido no WhatsApp, embalagem segura e entrega garantida para todo o Brasil. Mais de 35.000 pedidos realizados e avaliação 4.9 estrelas.</p>
+    <div class="mt-10 flex flex-wrap justify-center gap-4">
+      <span class="bg-zinc-800 border border-zinc-700 px-4 py-2 rounded-full text-sm text-zinc-300">✅ Produtos 100% originais</span>
+      <span class="bg-zinc-800 border border-zinc-700 px-4 py-2 rounded-full text-sm text-zinc-300">✅ Nota fiscal em todos os pedidos</span>
+      <span class="bg-zinc-800 border border-zinc-700 px-4 py-2 rounded-full text-sm text-zinc-300">✅ Parcelamento em 12x</span>
+      <span class="bg-zinc-800 border border-zinc-700 px-4 py-2 rounded-full text-sm text-zinc-300">✅ Embalagem discreta</span>
+    </div>
+  </section>
+
+  <!-- ═══════════════ FOOTER ═══════════════ -->
+  <footer class="bg-black py-14 border-t border-emerald-500/30">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid md:grid-cols-4 gap-10 mb-10">
+        <div>
+          <div class="flex items-center gap-2 mb-4">
+            <i class="fa-solid fa-smoke text-2xl text-emerald-400"></i>
+            <h3 class="text-emerald-400 font-black text-xl">ONE TABACARIA</h3>
+          </div>
+          <p class="text-zinc-400 text-sm leading-relaxed">Tabacaria Online Premium. Qualidade e variedade para todos os fumantes exigentes do Brasil.</p>
+          <div class="flex gap-4 mt-5">
+            <a href="#" class="text-zinc-500 hover:text-emerald-400 transition text-xl"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="text-zinc-500 hover:text-emerald-400 transition text-xl"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#" class="text-zinc-500 hover:text-emerald-400 transition text-xl"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="https://wa.me/5511970153896" target="_blank" class="text-zinc-500 hover:text-emerald-400 transition text-xl"><i class="fa-brands fa-whatsapp"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="font-bold text-sm uppercase tracking-widest text-zinc-300 mb-5">Categorias</h4>
+          <ul class="space-y-3 text-zinc-400 text-sm">
+            <li><a href="#narguiles" class="hover:text-emerald-400 transition">Narguilés Completos</a></li>
+            <li><a href="#essencias" class="hover:text-emerald-400 transition">Essências & Sabores</a></li>
+            <li><a href="#vapes" class="hover:text-emerald-400 transition">Vapes & Disposables</a></li>
+            <li><a href="#acessorios" class="hover:text-emerald-400 transition">Acessórios & Headshop</a></li>
+            <li><a href="produtos.html" class="hover:text-emerald-400 transition">Todos os Produtos</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold text-sm uppercase tracking-widest text-zinc-300 mb-5">Atendimento</h4>
+          <ul class="space-y-3 text-zinc-400 text-sm">
+            <li class="flex items-center gap-2"><i class="fa-brands fa-whatsapp text-emerald-400"></i> (11) 97015-3896</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-envelope text-emerald-400"></i> sac@onetabacaria.com.br</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-clock text-emerald-400"></i> Seg–Sáb: 9h às 22h</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold text-sm uppercase tracking-widest text-zinc-300 mb-5">Links Úteis</h4>
+          <ul class="space-y-3 text-zinc-400 text-sm">
+            <li><a href="#" class="hover:text-emerald-400 transition">Política de Privacidade</a></li>
+            <li><a href="#" class="hover:text-emerald-400 transition">Trocas e Devoluções</a></li>
+            <li><a href="#blog" class="hover:text-emerald-400 transition">Blog da Tabacaria</a></li>
+            <li><a href="#" class="hover:text-emerald-400 transition">Rastrear meu pedido</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-zinc-800 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-zinc-500">
+        <p>© 2026 ONE TABACARIA — Todos os direitos reservados. CNPJ: 00.000.000/0001-00</p>
+        <p>Venda proibida para menores de 18 anos. Fumar é prejudicial à saúde.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══════════════ FLOATING WHATSAPP ═══════════════ -->
+  <a href="https://wa.me/5511970153896" target="_blank"
+     class="fixed bottom-6 right-6 z-50 bg-emerald-500 hover:bg-emerald-400 text-black w-16 h-16 rounded-full flex items-center justify-center shadow-2xl shadow-emerald-500/40 transition hover:scale-110"
+     aria-label="Falar no WhatsApp">
+    <i class="fa-brands fa-whatsapp text-3xl"></i>
+  </a>
+
+  <!-- ═══════════════ CART SIDEBAR ═══════════════ -->
+  <div id="cart-overlay" class="fixed inset-0 bg-black/60 z-[90] hidden backdrop-blur-sm" onclick="closeCart()"></div>
+
+  <aside id="cart-sidebar" class="fixed top-0 right-0 h-full w-full max-w-sm bg-zinc-900 z-[100] border-l border-emerald-500/30 shadow-2xl flex flex-col">
+    <div class="flex items-center justify-between px-6 py-5 border-b border-zinc-800">
+      <h2 class="font-black text-xl">Seu Carrinho</h2>
+      <button onclick="closeCart()" class="p-2 hover:text-emerald-400 transition"><i class="fa-solid fa-xmark text-xl"></i></button>
+    </div>
+    <div id="cart-items" class="flex-1 overflow-y-auto px-6 py-4 space-y-4">
+      <p id="cart-empty" class="text-center text-zinc-400 mt-16">
+        <i class="fa-solid fa-shopping-bag text-5xl text-zinc-700 block mb-4"></i>
+        Seu carrinho está vazio
+      </p>
+    </div>
+    <div class="px-6 py-5 border-t border-zinc-800 space-y-4">
+      <div class="flex justify-between items-center">
+        <span class="text-zinc-400">Total</span>
+        <span id="cart-total" class="text-2xl font-black text-emerald-400">R$ 0,00</span>
+      </div>
+      <button onclick="finalizarPedido()"
+         class="block w-full bg-emerald-500 hover:bg-emerald-400 text-black text-center py-4 rounded-2xl font-bold transition hover:scale-[1.02]">
+        <i class="fa-brands fa-whatsapp mr-2"></i>Finalizar via WhatsApp
+      </button>
+    </div>
+  </aside>
+
+  <script>
+    // ── Smooth scroll ──────────────────────────────────────────────────────────
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // ── WhatsApp helpers ───────────────────────────────────────────────────────
+    const WA_NUMBER = '5511970153896';
+
+    function buyOnWhatsApp(productName) {
+      const msg = `Olá! Gostaria de comprar o produto: ${productName}`;
+      window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
+    }
+
+    function finalizarPedido() {
+      let msg;
+      if (cart.length === 0) {
+        msg = 'Olá! Gostaria de conhecer os produtos da One Tabacaria.';
+      } else {
+        const items = cart.map(i =>
+          `• ${i.name} x${i.qty} — R$ ${(i.price * i.qty).toFixed(2).replace('.', ',')}`
+        ).join('\n');
+        const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+        msg = `Olá! Gostaria de finalizar meu pedido na One Tabacaria:\n\n${items}\n\nTotal: R$ ${total.toFixed(2).replace('.', ',')}`;
+      }
+      window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
+    }
+
+    // ── Data ──────────────────────────────────────────────────────────────────
+    const allProducts = {
+      destaque: [
+        { name: "Narguile Magic Completo", price: 55.00,  img: "https://picsum.photos/id/1015/400/400", badge: "Mais Vendido" },
+        { name: "Narguile Mahalla Hype Mini", price: 220.00, img: "https://picsum.photos/id/201/400/400",  badge: "Destaque" },
+        { name: "Narguile Triton Viper SV Verde", price: 270.00, img: "https://picsum.photos/id/301/400/400" },
+        { name: "Stem Hookah Bulls Cloud", price: 198.00, img: "https://picsum.photos/id/401/400/400" },
+        { name: "Essência Adalya Love 66", price: 22.00, img: "https://picsum.photos/id/501/400/400", badge: "Top 1" },
+        { name: "SMOK NOVO 4 Kit Completo", price: 165.00, img: "https://picsum.photos/id/701/400/400" },
+        { name: "Vaporesso Xros PRO", price: 189.78, img: "https://picsum.photos/id/801/400/400", badge: "Novo" },
+        { name: "YOOP Refil 60ml Blueberry", price: 45.00, img: "https://picsum.photos/id/601/400/400" },
+      ],
+      narguiles: [
+        { name: "Narguile Magic Completo", price: 55.00,  img: "https://picsum.photos/id/1015/400/400", badge: "Mais Vendido" },
+        { name: "Narguile Mahalla Hype Mini", price: 220.00, img: "https://picsum.photos/id/201/400/400" },
+        { name: "Narguile Triton Viper SV", price: 270.00, img: "https://picsum.photos/id/301/400/400" },
+        { name: "Stem Hookah Bulls Cloud", price: 198.00, img: "https://picsum.photos/id/401/400/400" },
+      ],
+      essencias: [
+        { name: "Adalya Love 66", price: 22.00, img: "https://picsum.photos/id/501/400/400", badge: "Top 1" },
+        { name: "Adalya Ice Peach", price: 20.00, img: "https://picsum.photos/id/502/400/400" },
+        { name: "Tangiers Noir Birquq", price: 38.00, img: "https://picsum.photos/id/503/400/400" },
+        { name: "Al Fakher Double Apple", price: 24.00, img: "https://picsum.photos/id/504/400/400", badge: "Clássico" },
+      ],
+      vapes: [
+        { name: "SMOK NOVO 4", price: 165.00, img: "https://picsum.photos/id/701/400/400" },
+        { name: "Vaporesso Xros PRO", price: 189.78, img: "https://picsum.photos/id/801/400/400", badge: "Novo" },
+        { name: "YOOP Refil 60ml", price: 45.00, img: "https://picsum.photos/id/601/400/400" },
+        { name: "Disposable Waka 6000", price: 89.00, img: "https://picsum.photos/id/602/400/400" },
+      ],
+      acessorios: [
+        { name: "Mangueira Silicone Premium", price: 45.00, img: "https://picsum.photos/id/101/400/400" },
+        { name: "Rosh Funil Zenith Phunnel", price: 75.00, img: "https://picsum.photos/id/102/400/400" },
+        { name: "Pinça e Limpador Kit", price: 18.00, img: "https://picsum.photos/id/103/400/400" },
+        { name: "Carvão Coco Premium 1kg", price: 32.00, img: "https://picsum.photos/id/104/400/400", badge: "Oferta" },
+      ],
+      novidades: [
+        { name: "Mahalla XL Nova Edição", price: 289.00, img: "https://picsum.photos/id/900/400/400", badge: "Novo" },
+        { name: "Adalya Rio 2025", price: 25.00, img: "https://picsum.photos/id/901/400/400", badge: "Novo" },
+        { name: "SMOK G-Priv 4", price: 299.00, img: "https://picsum.photos/id/902/400/400", badge: "Novo" },
+        { name: "Rosh Ares Phunnel V2", price: 95.00, img: "https://picsum.photos/id/903/400/400", badge: "Novo" },
+      ],
+    };
+
+    // ── Cart ──────────────────────────────────────────────────────────────────
+    let cart = [];
+
+    function addToCart(category, index) {
+      const product = allProducts[category][index];
+      const existing = cart.find(i => i.name === product.name);
+      if (existing) {
+        existing.qty++;
+      } else {
+        cart.push({ ...product, qty: 1 });
+      }
+      updateCartUI();
+      openCart();
+    }
+
+    function removeFromCart(name) {
+      cart = cart.filter(i => i.name !== name);
+      updateCartUI();
+    }
+
+    function updateCartUI() {
+      const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+      const count = cart.reduce((s, i) => s + i.qty, 0);
+      const countEl = document.getElementById('cart-count');
+      countEl.textContent = count;
+      if (count > 0) {
+        countEl.classList.remove('hidden');
+      } else {
+        countEl.classList.add('hidden');
+      }
+      document.getElementById('cart-total').textContent = 'R$ ' + total.toFixed(2).replace('.', ',');
+
+      const itemsEl = document.getElementById('cart-items');
+      const emptyEl = document.getElementById('cart-empty');
+      if (cart.length === 0) {
+        emptyEl.classList.remove('hidden');
+        itemsEl.innerHTML = '';
+        itemsEl.appendChild(emptyEl);
+        return;
+      }
+
+      itemsEl.innerHTML = cart.map(item => `
+        <div class="flex items-center gap-4 bg-zinc-800 rounded-2xl p-4">
+          <img src="${item.img}" class="w-14 h-14 object-cover rounded-xl flex-shrink-0">
+          <div class="flex-1 min-w-0">
+            <p class="font-semibold text-sm leading-tight truncate">${item.name}</p>
+            <p class="text-emerald-400 font-bold mt-1">R$ ${(item.price * item.qty).toFixed(2).replace('.', ',')}</p>
+            <p class="text-zinc-500 text-xs">Qtd: ${item.qty}</p>
+          </div>
+          <button onclick="removeFromCart('${item.name.replace(/'/g, "\\'")}')" class="text-zinc-500 hover:text-red-400 transition p-1">
+            <i class="fa-solid fa-trash text-sm"></i>
+          </button>
+        </div>
+      `).join('');
+    }
+
+    function openCart() {
+      document.getElementById('cart-sidebar').classList.add('open');
+      document.getElementById('cart-overlay').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeCart() {
+      document.getElementById('cart-sidebar').classList.remove('open');
+      document.getElementById('cart-overlay').classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+
+    // ── Render ────────────────────────────────────────────────────────────────
+    function productCard(product, category, index) {
+      const badge = product.badge
+        ? `<span class="absolute top-3 left-3 bg-emerald-500 text-black text-xs font-bold px-2.5 py-1 rounded-full">${product.badge}</span>`
+        : '';
+      const escapedName = product.name.replace(/'/g, "\\'");
+      return `
+        <div class="product-card bg-zinc-900 rounded-3xl overflow-hidden border border-zinc-800 hover:border-emerald-500/50 flex flex-col">
+          <div class="relative">
+            <img src="${product.img}" alt="${product.name}" class="w-full h-52 object-cover">
+            ${badge}
+          </div>
+          <div class="p-5 flex flex-col flex-1">
+            <h3 class="font-semibold text-sm leading-tight flex-1">${product.name}</h3>
+            <p class="text-emerald-400 text-2xl font-black mt-3">R$ ${product.price.toFixed(2).replace('.', ',')}</p>
+            <p class="text-zinc-500 text-xs mt-0.5">ou 12x de R$ ${(product.price / 12).toFixed(2).replace('.', ',')}</p>
+            <div class="mt-4 flex gap-2">
+              <button onclick="addToCart('${category}', ${index})"
+                      class="flex-1 bg-zinc-700 hover:bg-zinc-600 text-white py-3 rounded-2xl text-xs font-bold transition hover:scale-[1.02]">
+                <i class="fa-solid fa-cart-plus mr-1"></i> Carrinho
+              </button>
+              <button onclick="buyOnWhatsApp('${escapedName}')"
+                      class="flex-1 bg-emerald-500 hover:bg-emerald-400 text-black py-3 rounded-2xl text-xs font-bold transition hover:scale-[1.02]">
+                <i class="fa-brands fa-whatsapp mr-1"></i> Comprar
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderSection(gridId, category) {
+      const grid = document.getElementById(gridId);
+      if (grid) {
+        grid.innerHTML = allProducts[category].map((p, i) => productCard(p, category, i)).join('');
+      }
+    }
+
+    // ── Mobile menu ───────────────────────────────────────────────────────────
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      const icon = document.getElementById('hamburger-icon');
+      menu.classList.toggle('open');
+      icon.className = menu.classList.contains('open')
+        ? 'fa-solid fa-xmark text-xl'
+        : 'fa-solid fa-bars text-xl';
+    }
+
+    // ── Newsletter ────────────────────────────────────────────────────────────
+    function subscribeNewsletter(e) {
+      e.preventDefault();
+      const email = document.getElementById('nl-email').value;
+      alert(`Ótimo! ${email} cadastrado com sucesso. Seu cupom ONETAB10 está no seu e-mail!`);
+      e.target.reset();
+    }
+
+    // ── Init ──────────────────────────────────────────────────────────────────
+    window.onload = () => {
+      renderSection('product-grid',    'destaque');
+      renderSection('narguiles-grid',  'narguiles');
+      renderSection('essencias-grid',  'essencias');
+      renderSection('vapes-grid',      'vapes');
+      renderSection('acessorios-grid', 'acessorios');
+      renderSection('novidades-grid',  'novidades');
+      updateCartUI();
+      console.log('%c✅ One Tabacaria carregado!', 'color:#10b981;font-size:18px');
+    };
+  </script>
+</body>
+</html>

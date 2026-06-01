@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Índice — Aulas Front-End</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0f0f0f;
+            color: #e0e0e0;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            color: #fff;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        header p {
+            margin-top: 8px;
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        .container {
+            max-width: 860px;
+            margin: 0 auto;
+        }
+
+        section {
+            margin-bottom: 48px;
+        }
+
+        section h2 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #555;
+            border-bottom: 1px solid #222;
+            padding-bottom: 10px;
+            margin-bottom: 16px;
+        }
+
+        ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        li {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 12px 16px;
+            background-color: #161616;
+            border-radius: 6px;
+            border: 1px solid #1e1e1e;
+            transition: border-color 0.2s, background-color 0.2s;
+        }
+
+        li:hover {
+            background-color: #1c1c1c;
+            border-color: #333;
+        }
+
+        .num {
+            font-size: 0.75rem;
+            color: #444;
+            min-width: 28px;
+            text-align: right;
+            font-variant-numeric: tabular-nums;
+        }
+
+        li a {
+            color: #c9d1d9;
+            text-decoration: none;
+            font-size: 0.95rem;
+            flex: 1;
+        }
+
+        li a:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+
+        .tag {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 2px 8px;
+            border-radius: 20px;
+            border: 1px solid #2a2a2a;
+            color: #555;
+            white-space: nowrap;
+        }
+
+        .tag.css    { border-color: #264f78; color: #4da3e8; }
+        .tag.html   { border-color: #5a2d0c; color: #e07b3a; }
+        .tag.layout { border-color: #1e3a1e; color: #4cae4c; }
+        .tag.social { border-color: #3a1a3a; color: #b06acd; }
+        .tag.extra  { border-color: #3a3a1a; color: #bfb030; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Aulas Front-End</h1>
+    <p>Índice de navegação — todos os arquivos do curso</p>
+</header>
+
+<div class="container">
+
+    <section>
+        <h2>Aulas — HTML</h2>
+        <ul>
+            <li><span class="num">01</span><a href="titulos.html">titulos.html</a><span class="tag html">HTML</span></li>
+            <li><span class="num">02</span><a href="elementos-textuais.html">elementos-textuais.html</a><span class="tag html">HTML</span></li>
+            <li><span class="num">03</span><a href="listas.html">listas.html</a><span class="tag html">HTML</span></li>
+            <li><span class="num">04</span><a href="lista-de-definicao.html">lista-de-definicao.html</a><span class="tag html">HTML</span></li>
+            <li><span class="num">05</span><a href="hiperlinks.html">hiperlinks.html</a><span class="tag html">HTML</span></li>
+            <li><span class="num">06</span><a href="usando-imagens.html">usando-imagens.html</a><span class="tag html">HTML</span></li>
+            <li><span class="num">07</span><a href="audio-e-videio.html">audio-e-videio.html</a><span class="tag html">HTML</span></li>
+            <li><span class="num">08</span><a href="iframe.html">iframe.html</a><span class="tag html">HTML</span></li>
+            <li><span class="num">09</span><a href="atalhos.html">atalhos.html</a><span class="tag html">HTML</span></li>
+            <li><span class="num">10</span><a href="areas-de-conteudo.html">areas-de-conteudo.html</a><span class="tag html">HTML</span></li>
+            <li><span class="num">11</span><a href="conteudo-expansivel.html">conteudo-expansivel.html</a><span class="tag html">HTML</span></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Aulas — CSS</h2>
+        <ul>
+            <li><span class="num">12</span><a href="unidades-de-medidias.html">unidades-de-medidias.html</a><span class="tag css">CSS</span></li>
+            <li><span class="num">13</span><a href="variaveis.html">variaveis.html</a><span class="tag css">CSS</span></li>
+            <li><span class="num">14</span><a href="box-model.html">box-model.html</a><span class="tag css">CSS</span></li>
+            <li><span class="num">15</span><a href="seletores-is-has.html">seletores-is-has.html</a><span class="tag css">CSS</span></li>
+            <li><span class="num">16</span><a href="animacoes.html">animacoes.html</a><span class="tag css">CSS</span></li>
+            <li><span class="num">17</span><a href="imagens-responsivas.html">imagens-responsivas.html</a><span class="tag css">CSS</span></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Aulas — Layout</h2>
+        <ul>
+            <li><span class="num">18</span><a href="flexbox-itens.html">flexbox-itens.html</a><span class="tag layout">Layout</span></li>
+            <li><span class="num">19</span><a href="grid-layout.html">grid-layout.html</a><span class="tag layout">Layout</span></li>
+            <li><span class="num">20</span><a href="grid-novoLayout.html">grid-novoLayout.html</a><span class="tag layout">Layout</span></li>
+            <li><span class="num">21</span><a href="desktop-first.html">desktop-first.html</a><span class="tag layout">Layout</span></li>
+            <li><span class="num">22</span><a href="mobile-first.html">mobile-first.html</a><span class="tag layout">Layout</span></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Aulas — Diversidade &amp; Inclusão</h2>
+        <ul>
+            <li><span class="num">23</span><a href="capacitismo.html">capacitismo.html</a><span class="tag social">Social</span></li>
+            <li><span class="num">24</span><a href="etarismo.html">etarismo.html</a><span class="tag social">Social</span></li>
+            <li><span class="num">25</span><a href="racismo.html">racismo.html</a><span class="tag social">Social</span></li>
+            <li><span class="num">26</span><a href="exercicio-misoginia.html">exercicio-misoginia.html</a><span class="tag social">Social</span></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Aulas — Projetos / Exemplos</h2>
+        <ul>
+            <li><span class="num">27</span><a href="exemplo-geral.html">exemplo-geral.html</a><span class="tag extra">Exemplo</span></li>
+            <li><span class="num">28</span><a href="CEVL.html">CEVL.html</a><span class="tag extra">Exemplo</span></li>
+            <li><span class="num">29</span><a href="sitedocris.html">sitedocris.html</a><span class="tag extra">Exemplo</span></li>
+            <li><span class="num">30</span><a href="spfc.html">spfc.html</a><span class="tag extra">Exemplo</span></li>
+            <li><span class="num">31</span><a href="produtos.html">produtos.html</a><span class="tag extra">Exemplo</span></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Exercícios</h2>
+        <ul>
+            <li><span class="num">01</span><a href="exercicios/exercicio01.html">exercicio01.html</a><span class="tag html">HTML</span></li>
+            <li><span class="num">02</span><a href="exercicios/exercicio02.html">exercicio02.html</a><span class="tag html">HTML</span></li>
+            <li><span class="num">03</span><a href="exercicios/exercicio03.html">exercicio03.html</a><span class="tag html">HTML</span></li>
+            <li><span class="num">04</span><a href="exercicios/exercicio04-pagina01.html">exercicio04-pagina01.html</a><span class="tag html">HTML</span></li>
+            <li><span class="num">05</span><a href="exercicios/exercicio04-pagina02.html">exercicio04-pagina02.html</a><span class="tag html">HTML</span></li>
+            <li><span class="num">06</span><a href="exercicios/exercicio-layout.html">exercicio-layout.html</a><span class="tag layout">Layout</span></li>
+            <li><span class="num">07</span><a href="exercicios/exerciciolayoutresponsivo.html">exerciciolayoutresponsivo.html</a><span class="tag layout">Layout</span></li>
+            <li><span class="num">08</span><a href="exercicios/exercioflexbox.html">exercioflexbox.html</a><span class="tag layout">Layout</span></li>
+            <li><span class="num">09</span><a href="exercicios/exercicioteam.html">exercicioteam.html</a><span class="tag extra">Exemplo</span></li>
+        </ul>
+    </section>
+
+</div>
+
+</body>
+</html>

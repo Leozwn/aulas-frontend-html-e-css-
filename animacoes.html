@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animações</title>
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Monoton&display=swap" rel="stylesheet">
+
+
+    <style>
+        /* Alterando o Box Model (padding, width, height, border) */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        /* Regra de reset parcial(zera margin e padding=fica colado) */
+        body,
+        h1,
+        h2,
+        p {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: system-ui, sans-serif;
+            color: rgb(121, 121, 121);
+            background-color: rgb(3, 0, 48);
+            animation-name: mudarCorFundo;
+            animation-duration: 3s;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+        }
+
+        nav {
+            background-color: rgb(96, 97, 158);
+            border-block-end: solid 4px rgb(255, 255, 255);
+            height: 80px;
+            position: sticky;
+            top: 0;
+            background: linear-gradient(to right, rgba(15, 0, 152, 0) 0%, rgba(15, 0, 152, 0.8) 3%, rgba(15, 0, 152, 1) 8%, rgba(15, 0, 152, 1) 19%, rgba(15, 0, 152, 1) 20%, rgba(4, 0, 214, 1) 50%, rgba(15, 0, 154, 1) 79%, rgba(15, 0, 152, 0.99) 80%, rgba(15, 0, 152, 0.8) 96%, rgba(15, 0, 152, 0) 100%);
+
+            /* Habilitando o modo flex (controla o espaço)  */
+            display: flex;
+            gap: 30px;
+
+            flex-wrap: wrap;
+
+
+            /* Sobre a direção e eixos de Flexbox
+            A direção padrão é flex-direction: row.
+            Nesse caso, Justify-content alinha os elementos no eixo main(horizontal), e o align-items linha os elementos no eixo cross (vertical).
+            
+            Se mudar a direção para colum(coluna), essa lógica também é invertida: justify-content alinhará os elementos horizontalmente.*/
+            justify-content: center;
+            align-items: center;
+            /* posição do menu (horizontal ou vetical=colum) */
+            flex-direction: row;
+
+
+        }
+
+        nav a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+            /* Definimos o elemento a como contexto de posicionamento do pseudo-elemento after.
+            Ele serve como âncora! */
+            position: relative;
+        }
+
+        nav a:hover, a:focus {
+            color: rgb(0, 0, 0);
+        }
+
+        nav a::after {
+            content: "";
+            background-color: rgb(255, 255, 255);
+            width: 0; 
+            height: 4px;
+            position: absolute;
+          
+            /* Coordenadas */
+            bottom: -4px;
+            left: 0;
+
+            /* Cria uma transição animada da largura */
+            transition: 1s;
+        }
+
+        /* Ao passar o mouse no link do nav, modificar a largura do pseudo-elemento */
+              nav a:hover::after, nav a:focus::after {
+            width: 100%;
+        }
+
+
+        .hero {
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+
+            a {
+                text-decoration: none;
+                background-color: rgb(2, 107, 2);
+                color: white;
+                padding: 0.5rem;
+                border-radius: 8px;
+
+                &:hover,
+                &:focus {
+                    background-color: rgb(14, 218, 14);
+                }
+            }
+        }
+
+        .banner {
+            background-color: darkred;
+            text-align: center;
+            padding: 1.2rem;
+            font-weight: bold;
+            color: white;
+            margin-block: 1rem;
+            font-size: 35px
+        }
+
+        .cards {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+
+            /* Alinha os itens de maneira agrupada (precisa ter espaço suficiente pra isso) */
+            align-content: flex-start;
+
+            /* "Quebra" o layout. se não houver espaço suficiente, os elementos irão pra baixo. */
+            flex-wrap: wrap;
+
+
+            gap: 1.2rem;
+            margin-block-end: 2rem;
+            height: 300px;
+            animation-name: cartao;
+            animation-duration: 1.5s;
+            animation-delay: 1s;
+            animation-fill-mode: backwards;
+        }
+
+        .card {
+            width: 250px;
+            padding: 1rem;
+            min-height: 200px;
+            box-shadow: white 0 0 25px;
+            background-color: rgb(27, 27, 27);
+            color: white;
+            font-family: Monoton;
+            border-radius: 4px;
+
+         
+        }
+
+        .html {
+            box-shadow: orange 0 0 8px;
+            animation-name: html;
+            animation-duration: 2s;
+            animation-delay: 0;
+            animation-fill-mode: backwards;
+        }
+
+
+        .css {
+            box-shadow: rgb(255, 3, 255) 0 0 10px;
+            animation-name: css;
+            animation-duration: 2s;
+            animation-delay: 1s;
+            animation-fill-mode: backwards;
+        }
+
+
+        .js {
+            box-shadow: greenyellow 0 0 10px;
+            animation-name: js;
+            animation-duration: 2s;
+            animation-delay: 1.5s;
+            animation-fill-mode: backwards;
+        }
+
+        /* .sombra */
+        /* article:nth-child(2), article:nth-child(3) {
+            box-shadow: yellow 0 0 100px;
+        } */
+
+        /* Regras de Animação:utilizam uma diretiva especial chamda @keyframes contendo um nome e seletores de animação */
+
+        @keyframes mudarCorFundo { 
+            /* De/Inicio/Começo */
+            from { background-color: #ffffff;}
+
+            /* Para/Fim/Término */
+            to {background-color:  rgb(3, 0, 48);}
+/* 
+            /* 0% {background-color: white;}  */
+            /* 25% {background-color: rgb(102, 102, 102);}
+            25%{background-color: rgb(62, 0, 119);}
+            50%{background-color: ; rgb(3, 0, 48)}  */
+
+        }
+        
+        h1 {
+            animation-name: subir;
+            animation-duration: 2s;
+        }
+
+        hero p {
+            animation-name: subir;
+            animation-duration: 2s;
+            animation-delay: 2s;
+
+            /* Ele aplica os estilos do primeiro keyframes antes da animação começar, durante o tempo do animation-delay, se você tiver um delay, o elemento fica com o estilo "normal" até a animação*/
+            animation-fill-mode: backwards;
+        }
+
+        @keyframes subir {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        div {
+            animation-name: horizontal;
+            animation-duration: 1s;
+            animation-delay: 1s;
+            animation-fill-mode: backwards;
+        }
+
+        @keyframes horizontal {
+            from {
+                opacity: 0;
+                transform: translateX(-1200px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0px);
+            }
+
+        }
+
+        @keyframes cartao {
+            from {
+                opacity: 0;
+                transform: scale(0)
+            }
+
+            to {
+                opacity: 1;
+                 transform: scale(3px)
+            }
+        }
+        @keyframes html {
+            from {
+                opacity: 0;
+                transform: scale(0)
+            }
+
+            to {
+                opacity: 2;
+                 transform: scale(15px)
+            }
+        }
+        @keyframes css {
+            from {
+                opacity: 0;
+                transform: scale(0)
+            }
+
+            to {
+                opacity: 2;
+                 transform: scale(15px)
+            }
+        }
+        @keyframes js {
+            from {
+                opacity: 0;
+                transform: scale(0)
+            }
+
+            to {
+                opacity: 2;
+                 transform: scale(15px)
+            }
+        }
+
+       
+      
+
+
+    </style>
+</head>
+
+<body>
+    <!-- Barra de navegação -->
+    <nav>
+        <a href="">Início</a>
+        <a href="">Cursos</a>
+        <a href="">Contato</a>
+    </nav>
+
+    <!-- Seção/Chamda de destaque
+     Normalmente conhcecida como "Hero" contendo uma CTA(Call To Action) -->
+    <section class="hero">
+        <h1>Aprenda CSS do Zero</h1>
+        <p>Layout modernos com Flexbox</p>
+        <p><a href="">Matricule-se já!</a></p>
+    </section>
+
+    <!-- Banner publicitário -->
+    <div class="banner">
+        Promoção: 50% OFF hoje!
+    </div>
+
+    <!-- Cards (Cartões) de conteúdo-->
+    <main class="cards">
+        <article class="card html">
+            <h2 class="html">HTML</h2>
+            <p>Estruturas das páginas</p>
+        </article>
+
+        <article class="card css">
+            <h2 class="css">CSS</h2>
+            <p>Estilos, layout e animação</p>
+        </article>
+
+        <article class="card js">
+            <h2 class="js">JS</h2>
+            <p>Comportamento e interatividade</p>
+        </article>
+    </main>
+
+</html>

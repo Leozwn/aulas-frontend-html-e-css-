@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desktop Firt</title>
+    <style>
+        /* Etapa 1: Regras BASE, de uso GERAL */
+        *,
+        *::after,
+        *::before {
+            box-sizing: border-box;
+        }
+
+        body,
+        h2,
+        h2,
+        p {
+            margin: 0;
+            padding: 0;
+        }
+
+        html { font-size: 18px; }
+
+        body {
+            font-family: system-ui, sans-serif;
+            background-color: rgb(30, 100, 250);
+        }
+
+        span {
+            background-color: darkblue;
+            color: white;
+            padding: 4px;
+        }
+
+        .container {
+            background-color: rgb(255, 255, 255);
+            width: 95%;
+            max-width: 700px;
+            margin-inline: auto;
+            margin-block-start: 0.5rem;
+            padding: 0.5rem;
+        }
+
+        h1 {
+            font-size: 1.3rem;
+            color: darkblue;
+        }
+
+        h2{ font-size: 1.3rem;}
+        p {font-size: 1.1rem;}
+
+        ul {
+            display: flex;
+            margin: 10px 0;
+            padding: 0;
+            gap: 1rem;
+            list-style: none;
+            li {background-color: yellow;}
+        }
+  
+        /* Etapa 2: 
+        Criando media queries com breakpoints */
+        @media (max-width: 800px) {
+            html { font-size: 16px;}
+            .container{ max-width: auto;}
+            ul{
+                /* all: unset = signfica resetar para os valores normal/originais  */
+                /* all: unset; */
+                display: block;
+                padding: 1rem;
+                margin: 1rem;
+                list-style: disc;
+                
+                li { background-color: transparent;}
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Media Queries - <span>Desktop First</span></h1>
+        <h2>Conceito</h2>
+        <p>Media Queries são regras especiais em que criamos alterações na página de acordo com determinadas condições
+            (exemplo: tamanho da tela). </p>
+        <p>Essas alterações ocorrem com a configuração de 
+            
+            <!-- Ponto de adaptação - pré-definidos (definir o tamanho da tela) -->
+            <b>breakpoints</b>.</p>
+        <p>As media queries são aplicadas de acordo com a estratégia usada para design responsivo, podendo ser:</p>
+
+        <ul>
+            <li class="box1"><b>Mobile First</b>: do pequeno para o grande</li>
+            <li class="box2">Desktop First: do grnade para o pequeno</li>
+        </ul>
+
+    </div>
+
+</body>
+
+</html>

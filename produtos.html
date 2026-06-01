@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="One Tabacaria - Catálogo completo de produtos | Narguilés, Essências, Vapes e Acessórios">
+  <title>Produtos — One Tabacaria</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <style>
+    /* ── Nav underline ── */
+    nav a { position: relative; }
+    nav a::after {
+      content: "";
+      background-color: #10b981;
+      width: 0;
+      height: 3px;
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      transition: width 0.35s ease;
+    }
+    nav a:hover::after,
+    nav a:focus::after { width: 100%; }
+
+    /* ── Product cards ── */
+    .product-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 24px 40px -8px rgba(16,185,129,0.45);
+    }
+
+    /* ── Neon text ── */
+    .neon-text { text-shadow: 0 0 12px #10b981, 0 0 28px rgba(16,185,129,0.45); }
+
+    /* ── Mobile menu ── */
+    #mobile-menu {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+    }
+    #mobile-menu.open { max-height: 700px; }
+
+    /* ── Scrollbar ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #18181b; }
+    ::-webkit-scrollbar-thumb { background: #10b981; border-radius: 3px; }
+
+    /* ── Badge pulse ── */
+    @keyframes pulse-green {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(16,185,129,0.7); }
+      50%       { box-shadow: 0 0 0 6px rgba(16,185,129,0); }
+    }
+    .badge-pulse { animation: pulse-green 2s infinite; }
+
+    /* ── Hero page header ── */
+    .page-hero {
+      background: linear-gradient(160deg, rgba(0,0,0,0.75) 0%, rgba(5,80,40,0.55) 100%),
+                  url('./imagens/Hero-img-ONE-TABACARIA.webp') center center / cover no-repeat;
+    }
+
+    /* ── Search highlight ── */
+    .search-active { border-color: #10b981 !important; }
+
+    /* ── Filter chip active ── */
+    .filter-chip.active {
+      background-color: #10b981;
+      color: #000;
+      border-color: #10b981;
+    }
+  </style>
+</head>
+<body class="bg-zinc-950 text-white font-sans">
+
+  <!-- ═══════════════ NAVBAR ═══════════════ -->
+  <nav class="bg-black/95 sticky top-0 z-50 border-b border-emerald-500/40 backdrop-blur-sm">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+
+      <!-- Logo -->
+      <a href="sitedocris.html" class="flex items-center gap-3 group">
+        <i class="fa-solid fa-smoke text-4xl text-emerald-400 group-hover:drop-shadow-[0_0_12px_#10b981] transition"></i>
+        <h1 class="text-2xl md:text-3xl font-black tracking-tight neon-text">ONE TABACARIA</h1>
+      </a>
+
+      <!-- Desktop links -->
+      <div class="hidden lg:flex items-center gap-7 text-sm font-medium">
+        <a href="sitedocris.html" class="hover:text-emerald-400 transition">Início</a>
+        <a href="sitedocris.html#narguiles" class="hover:text-emerald-400 transition">Narguilés</a>
+        <a href="sitedocris.html#essencias" class="hover:text-emerald-400 transition">Essências</a>
+        <a href="sitedocris.html#vapes" class="hover:text-emerald-400 transition">Vapes</a>
+        <a href="sitedocris.html#acessorios" class="hover:text-emerald-400 transition">Acessórios</a>
+        <a href="produtos.html" class="text-emerald-400">Produtos</a>
+        <a href="sitedocris.html#blog" class="hover:text-emerald-400 transition">Blog</a>
+        <a href="sitedocris.html#novidades" class="hover:text-emerald-400 transition">Novidades</a>
+      </div>
+
+      <!-- Actions -->
+      <div class="flex items-center gap-4">
+        <!-- WhatsApp -->
+        <a href="https://wa.me/5511970153896" target="_blank"
+           class="bg-emerald-500 hover:bg-emerald-400 text-black px-5 py-2.5 rounded-xl font-semibold text-sm flex items-center gap-2 transition">
+          <i class="fa-brands fa-whatsapp text-lg"></i>
+          <span class="hidden sm:inline">WhatsApp</span>
+        </a>
+
+        <!-- Hamburger (mobile) -->
+        <button onclick="toggleMobileMenu()" class="lg:hidden p-2 hover:text-emerald-400 transition" aria-label="Menu">
+          <i id="hamburger-icon" class="fa-solid fa-bars text-xl"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="lg:hidden bg-zinc-900 border-t border-zinc-800">
+      <div class="flex flex-col px-6 py-4 gap-4 text-sm font-medium">
+        <a href="sitedocris.html" onclick="toggleMobileMenu()" class="hover:text-emerald-400 py-2 border-b border-zinc-800">Início</a>
+        <a href="sitedocris.html#narguiles" onclick="toggleMobileMenu()" class="hover:text-emerald-400 py-2 border-b border-zinc-800">Narguilés</a>
+        <a href="sitedocris.html#essencias" onclick="toggleMobileMenu()" class="hover:text-emerald-400 py-2 border-b border-zinc-800">Essências</a>
+        <a href="sitedocris.html#vapes" onclick="toggleMobileMenu()" class="hover:text-emerald-400 py-2 border-b border-zinc-800">Vapes</a>
+        <a href="sitedocris.html#acessorios" onclick="toggleMobileMenu()" class="hover:text-emerald-400 py-2 border-b border-zinc-800">Acessórios</a>
+        <a href="produtos.html" class="text-emerald-400 py-2 border-b border-zinc-800">Produtos</a>
+        <a href="sitedocris.html#blog" onclick="toggleMobileMenu()" class="hover:text-emerald-400 py-2 border-b border-zinc-800">Blog</a>
+        <a href="sitedocris.html#novidades" onclick="toggleMobileMenu()" class="hover:text-emerald-400 py-2">Novidades</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═══════════════ PAGE HERO ═══════════════ -->
+  <section class="page-hero py-20 text-center">
+    <div class="max-w-3xl mx-auto px-6">
+      <span class="inline-block bg-emerald-500/20 border border-emerald-500/50 text-emerald-300 text-sm font-semibold px-4 py-1.5 rounded-full mb-5 tracking-widest uppercase">
+        Catálogo Completo
+      </span>
+      <h2 class="text-5xl md:text-6xl font-black tracking-tighter mb-4 neon-text">Todos os Produtos</h2>
+      <p class="text-zinc-300 text-lg">Mais de 500 produtos disponíveis — encontre o que você procura</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════ BUSCA & FILTROS ═══════════════ -->
+  <section class="bg-zinc-900 border-b border-zinc-800 py-6 sticky top-[73px] z-40">
+    <div class="max-w-7xl mx-auto px-6">
+      <!-- Search bar -->
+      <div class="flex items-center bg-zinc-800 rounded-2xl px-5 py-3.5 gap-3 border border-zinc-700 focus-within:border-emerald-500 transition max-w-2xl mx-auto mb-5">
+        <i class="fa-solid fa-search text-zinc-400 text-lg"></i>
+        <input
+          id="search-input"
+          type="text"
+          placeholder="Buscar por nome do produto..."
+          class="bg-transparent text-base outline-none w-full placeholder-zinc-500"
+          oninput="filterProducts()"
+        >
+        <button id="clear-btn" onclick="clearSearch()" class="text-zinc-500 hover:text-emerald-400 transition hidden">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Category filters -->
+      <div class="flex flex-wrap gap-3 justify-center">
+        <button onclick="setCategory('todos')" data-cat="todos"
+                class="filter-chip active px-5 py-2 rounded-full text-sm font-semibold border border-zinc-600 transition hover:border-emerald-500">
+          Todos
+        </button>
+        <button onclick="setCategory('narguile')" data-cat="narguile"
+                class="filter-chip px-5 py-2 rounded-full text-sm font-semibold border border-zinc-600 bg-zinc-800 transition hover:border-emerald-500 hover:text-emerald-400">
+          <i class="fa-solid fa-wind mr-1"></i> Narguilés
+        </button>
+        <button onclick="setCategory('essencia')" data-cat="essencia"
+                class="filter-chip px-5 py-2 rounded-full text-sm font-semibold border border-zinc-600 bg-zinc-800 transition hover:border-emerald-500 hover:text-emerald-400">
+          <i class="fa-solid fa-droplet mr-1"></i> Essências
+        </button>
+        <button onclick="setCategory('vape')" data-cat="vape"
+                class="filter-chip px-5 py-2 rounded-full text-sm font-semibold border border-zinc-600 bg-zinc-800 transition hover:border-emerald-500 hover:text-emerald-400">
+          <i class="fa-solid fa-cloud mr-1"></i> Vapes
+        </button>
+        <button onclick="setCategory('acessorio')" data-cat="acessorio"
+                class="filter-chip px-5 py-2 rounded-full text-sm font-semibold border border-zinc-600 bg-zinc-800 transition hover:border-emerald-500 hover:text-emerald-400">
+          <i class="fa-solid fa-screwdriver-wrench mr-1"></i> Acessórios
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ PRODUCT GRID ═══════════════ -->
+  <section class="py-16">
+    <div class="max-w-7xl mx-auto px-6">
+      <!-- Result count -->
+      <p id="result-count" class="text-zinc-400 text-sm mb-8"></p>
+
+      <!-- Grid -->
+      <div id="products-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
+
+      <!-- Empty state -->
+      <div id="empty-state" class="hidden text-center py-24">
+        <i class="fa-solid fa-magnifying-glass text-6xl text-zinc-700 mb-6 block"></i>
+        <p class="text-xl font-bold text-zinc-400 mb-2">Nenhum produto encontrado</p>
+        <p class="text-zinc-500 mb-6">Tente buscar por outro nome ou remova os filtros.</p>
+        <button onclick="clearSearch()" class="bg-emerald-500 hover:bg-emerald-400 text-black px-6 py-3 rounded-xl font-bold transition">
+          Limpar busca
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ CTA WHATSAPP ═══════════════ -->
+  <section class="py-16 bg-emerald-950 border-y border-emerald-800 text-center">
+    <div class="max-w-2xl mx-auto px-6">
+      <i class="fa-brands fa-whatsapp text-6xl text-emerald-400 mb-5 block"></i>
+      <h3 class="text-3xl font-black mb-3">Não achou o que procura?</h3>
+      <p class="text-zinc-300 mb-8">Fale com a gente pelo WhatsApp e descubra todos os nossos produtos disponíveis.</p>
+      <a href="https://wa.me/5511970153896?text=Ol%C3%A1%21%20Gostaria%20de%20saber%20mais%20sobre%20os%20produtos%20da%20One%20Tabacaria." target="_blank"
+         class="inline-flex items-center gap-3 bg-emerald-500 hover:bg-emerald-400 text-black px-10 py-4 rounded-2xl text-lg font-bold transition hover:scale-105 shadow-lg shadow-emerald-500/30">
+        <i class="fa-brands fa-whatsapp text-2xl"></i>
+        Falar no WhatsApp
+      </a>
+    </div>
+  </section>
+
+  <!-- ═══════════════ FOOTER ═══════════════ -->
+  <footer class="bg-black py-14 border-t border-emerald-500/30">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid md:grid-cols-4 gap-10 mb-10">
+        <div>
+          <div class="flex items-center gap-2 mb-4">
+            <i class="fa-solid fa-smoke text-2xl text-emerald-400"></i>
+            <h3 class="text-emerald-400 font-black text-xl">ONE TABACARIA</h3>
+          </div>
+          <p class="text-zinc-400 text-sm leading-relaxed">Tabacaria Online Premium. Qualidade e variedade para todos os fumantes exigentes do Brasil.</p>
+          <div class="flex gap-4 mt-5">
+            <a href="#" class="text-zinc-500 hover:text-emerald-400 transition text-xl"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="text-zinc-500 hover:text-emerald-400 transition text-xl"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#" class="text-zinc-500 hover:text-emerald-400 transition text-xl"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="https://wa.me/5511970153896" target="_blank" class="text-zinc-500 hover:text-emerald-400 transition text-xl"><i class="fa-brands fa-whatsapp"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="font-bold text-sm uppercase tracking-widest text-zinc-300 mb-5">Categorias</h4>
+          <ul class="space-y-3 text-zinc-400 text-sm">
+            <li><a href="sitedocris.html#narguiles" class="hover:text-emerald-400 transition">Narguilés Completos</a></li>
+            <li><a href="sitedocris.html#essencias" class="hover:text-emerald-400 transition">Essências & Sabores</a></li>
+            <li><a href="sitedocris.html#vapes" class="hover:text-emerald-400 transition">Vapes & Disposables</a></li>
+            <li><a href="sitedocris.html#acessorios" class="hover:text-emerald-400 transition">Acessórios & Headshop</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold text-sm uppercase tracking-widest text-zinc-300 mb-5">Atendimento</h4>
+          <ul class="space-y-3 text-zinc-400 text-sm">
+            <li class="flex items-center gap-2"><i class="fa-brands fa-whatsapp text-emerald-400"></i> (11) 97015-3896</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-envelope text-emerald-400"></i> sac@onetabacaria.com.br</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-clock text-emerald-400"></i> Seg–Sáb: 9h às 22h</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold text-sm uppercase tracking-widest text-zinc-300 mb-5">Links Úteis</h4>
+          <ul class="space-y-3 text-zinc-400 text-sm">
+            <li><a href="sitedocris.html" class="hover:text-emerald-400 transition">Página Inicial</a></li>
+            <li><a href="sitedocris.html#blog" class="hover:text-emerald-400 transition">Blog da Tabacaria</a></li>
+            <li><a href="#" class="hover:text-emerald-400 transition">Política de Privacidade</a></li>
+            <li><a href="#" class="hover:text-emerald-400 transition">Rastrear meu pedido</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-zinc-800 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-zinc-500">
+        <p>© 2026 ONE TABACARIA — Todos os direitos reservados. CNPJ: 00.000.000/0001-00</p>
+        <p>Venda proibida para menores de 18 anos. Fumar é prejudicial à saúde.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══════════════ FLOATING WHATSAPP ═══════════════ -->
+  <a href="https://wa.me/5511970153896" target="_blank"
+     class="fixed bottom-6 right-6 z-50 bg-emerald-500 hover:bg-emerald-400 text-black w-16 h-16 rounded-full flex items-center justify-center shadow-2xl shadow-emerald-500/40 transition hover:scale-110"
+     aria-label="Falar no WhatsApp">
+    <i class="fa-brands fa-whatsapp text-3xl"></i>
+  </a>
+
+  <script>
+    const WA_NUMBER = '5511970153896';
+
+    // ── Product data ──────────────────────────────────────────────────────────
+    const products = [
+      // Narguilés
+      { name: "Narguile Magic Completo Azul",       price: 55.00,  img: "https://picsum.photos/id/1015/400/400", badge: "Mais Vendido", category: "narguile" },
+      { name: "Narguile Mahalla Hype Mini",          price: 220.00, img: "https://picsum.photos/id/201/400/400",  badge: "Destaque",     category: "narguile" },
+      { name: "Narguile Triton Viper SV Verde",      price: 270.00, img: "https://picsum.photos/id/301/400/400",  badge: null,           category: "narguile" },
+      { name: "Stem Hookah Bulls Cloud Titanium",    price: 198.00, img: "https://picsum.photos/id/401/400/400",  badge: null,           category: "narguile" },
+      { name: "Narguile Shisha King Pro 60cm",       price: 129.00, img: "https://picsum.photos/id/180/400/400",  badge: null,           category: "narguile" },
+      { name: "Narguile Amy Deluxe S-Liner",         price: 345.00, img: "https://picsum.photos/id/185/400/400",  badge: "Premium",      category: "narguile" },
+
+      // Essências
+      { name: "Adalya Love 66 50g",                  price: 22.00,  img: "https://picsum.photos/id/501/400/400",  badge: "Top 1",        category: "essencia" },
+      { name: "Adalya Ice Peach 50g",                price: 20.00,  img: "https://picsum.photos/id/502/400/400",  badge: null,           category: "essencia" },
+      { name: "Tangiers Noir Birquq 250g",           price: 68.00,  img: "https://picsum.photos/id/503/400/400",  badge: null,           category: "essencia" },
+      { name: "Al Fakher Double Apple 250g",         price: 45.00,  img: "https://picsum.photos/id/504/400/400",  badge: "Clássico",     category: "essencia" },
+      { name: "Adalya Rio 2025 50g",                 price: 25.00,  img: "https://picsum.photos/id/505/400/400",  badge: "Novo",         category: "essencia" },
+      { name: "Social Smoke Absolute Zero 250g",     price: 55.00,  img: "https://picsum.photos/id/506/400/400",  badge: null,           category: "essencia" },
+
+      // Vapes
+      { name: "SMOK NOVO 4 Kit Completo",            price: 165.00, img: "https://picsum.photos/id/701/400/400",  badge: null,           category: "vape" },
+      { name: "Vaporesso Xros PRO Kit",              price: 189.78, img: "https://picsum.photos/id/801/400/400",  badge: "Novo",         category: "vape" },
+      { name: "Disposable Waka 6000 Puffs",          price: 89.00,  img: "https://picsum.photos/id/602/400/400",  badge: null,           category: "vape" },
+      { name: "YOOP Refil 60ml Blueberry Ice",       price: 45.00,  img: "https://picsum.photos/id/601/400/400",  badge: null,           category: "vape" },
+      { name: "SMOK G-Priv 4 230W Box Mod",          price: 299.00, img: "https://picsum.photos/id/902/400/400",  badge: "Novo",         category: "vape" },
+      { name: "Uwell Caliburn G3 Pod System",        price: 159.00, img: "https://picsum.photos/id/750/400/400",  badge: null,           category: "vape" },
+
+      // Acessórios
+      { name: "Mangueira Silicone Premium 1.5m",     price: 45.00,  img: "https://picsum.photos/id/101/400/400",  badge: null,           category: "acessorio" },
+      { name: "Rosh Funil Zenith Phunnel",           price: 75.00,  img: "https://picsum.photos/id/102/400/400",  badge: null,           category: "acessorio" },
+      { name: "Pinça e Limpador Kit Completo",       price: 18.00,  img: "https://picsum.photos/id/103/400/400",  badge: null,           category: "acessorio" },
+      { name: "Carvão Coco Premium 1kg",             price: 32.00,  img: "https://picsum.photos/id/104/400/400",  badge: "Oferta",       category: "acessorio" },
+      { name: "Rosh Ares Phunnel V2",                price: 95.00,  img: "https://picsum.photos/id/903/400/400",  badge: "Novo",         category: "acessorio" },
+      { name: "Difusor de Fumaça Triton",            price: 28.00,  img: "https://picsum.photos/id/110/400/400",  badge: null,           category: "acessorio" },
+    ];
+
+    // ── State ─────────────────────────────────────────────────────────────────
+    let currentCategory = 'todos';
+    let currentSearch = '';
+
+    // ── Filter logic ──────────────────────────────────────────────────────────
+    function getFilteredProducts() {
+      return products.filter(p => {
+        const matchCat = currentCategory === 'todos' || p.category === currentCategory;
+        const matchSearch = p.name.toLowerCase().includes(currentSearch.toLowerCase());
+        return matchCat && matchSearch;
+      });
+    }
+
+    function filterProducts() {
+      currentSearch = document.getElementById('search-input').value;
+      document.getElementById('clear-btn').classList.toggle('hidden', currentSearch === '');
+      renderProducts();
+    }
+
+    function setCategory(cat) {
+      currentCategory = cat;
+      document.querySelectorAll('.filter-chip').forEach(btn => {
+        btn.classList.remove('active');
+        btn.classList.add('bg-zinc-800');
+      });
+      const active = document.querySelector(`[data-cat="${cat}"]`);
+      if (active) {
+        active.classList.add('active');
+        active.classList.remove('bg-zinc-800');
+      }
+      renderProducts();
+    }
+
+    function clearSearch() {
+      document.getElementById('search-input').value = '';
+      currentSearch = '';
+      document.getElementById('clear-btn').classList.add('hidden');
+      renderProducts();
+    }
+
+    // ── Render ────────────────────────────────────────────────────────────────
+    function buildCard(product) {
+      const badge = product.badge
+        ? `<span class="absolute top-3 left-3 bg-emerald-500 text-black text-xs font-bold px-2.5 py-1 rounded-full">${product.badge}</span>`
+        : '';
+      const escapedName = product.name.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+      const waMsg = encodeURIComponent(`Olá! Gostaria de comprar o produto: ${product.name}`);
+      return `
+        <div class="product-card bg-zinc-900 rounded-3xl overflow-hidden border border-zinc-800 hover:border-emerald-500/50 flex flex-col">
+          <div class="relative overflow-hidden">
+            <img src="${product.img}" alt="${escapedName}" class="w-full h-52 object-cover transition duration-500 hover:scale-105">
+            ${badge}
+          </div>
+          <div class="p-5 flex flex-col flex-1">
+            <span class="text-xs text-zinc-500 font-medium uppercase tracking-wider mb-1">${categoryLabel(product.category)}</span>
+            <h3 class="font-semibold text-sm leading-tight flex-1">${product.name}</h3>
+            <p class="text-emerald-400 text-2xl font-black mt-3">R$ ${product.price.toFixed(2).replace('.', ',')}</p>
+            <p class="text-zinc-500 text-xs mt-0.5">ou 12x de R$ ${(product.price / 12).toFixed(2).replace('.', ',')}</p>
+            <a href="https://wa.me/${WA_NUMBER}?text=${waMsg}" target="_blank"
+               class="mt-4 w-full bg-emerald-500 hover:bg-emerald-400 text-black py-3 rounded-2xl text-sm font-bold transition hover:scale-[1.02] flex items-center justify-center gap-2">
+              <i class="fa-brands fa-whatsapp text-base"></i> Comprar
+            </a>
+          </div>
+        </div>
+      `;
+    }
+
+    function categoryLabel(cat) {
+      const labels = { narguile: 'Narguilé', essencia: 'Essência', vape: 'Vape', acessorio: 'Acessório' };
+      return labels[cat] || cat;
+    }
+
+    function renderProducts() {
+      const filtered = getFilteredProducts();
+      const grid = document.getElementById('products-grid');
+      const empty = document.getElementById('empty-state');
+      const count = document.getElementById('result-count');
+
+      if (filtered.length === 0) {
+        grid.innerHTML = '';
+        grid.classList.add('hidden');
+        empty.classList.remove('hidden');
+        count.textContent = '';
+      } else {
+        empty.classList.add('hidden');
+        grid.classList.remove('hidden');
+        grid.innerHTML = filtered.map(buildCard).join('');
+        count.textContent = `${filtered.length} produto${filtered.length !== 1 ? 's' : ''} encontrado${filtered.length !== 1 ? 's' : ''}`;
+      }
+    }
+
+    // ── Mobile menu ───────────────────────────────────────────────────────────
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      const icon = document.getElementById('hamburger-icon');
+      menu.classList.toggle('open');
+      icon.className = menu.classList.contains('open')
+        ? 'fa-solid fa-xmark text-xl'
+        : 'fa-solid fa-bars text-xl';
+    }
+
+    // ── Smooth scroll ─────────────────────────────────────────────────────────
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // ── Init ──────────────────────────────────────────────────────────────────
+    window.onload = () => {
+      renderProducts();
+      // Focus search if URL has ?busca=...
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('busca')) {
+        document.getElementById('search-input').value = params.get('busca');
+        filterProducts();
+      }
+      console.log('%c✅ One Tabacaria — Produtos carregado!', 'color:#10b981;font-size:18px');
+    };
+  </script>
+</body>
+</html>
